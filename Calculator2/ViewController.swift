@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     var savedNum = 0
     var lastButtonWasMode = false
     
+    @IBOutlet weak var displayLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -34,6 +36,34 @@ class ViewController: UIViewController {
     }
     
     func changedMode(newMode: modes) {
+        
+    }
+    
+    
+    @IBAction func zeroBtnTapped(_ sender: UIButton) {tappedNumber(num: 0)}
+    @IBAction func oneBtnTapped(_ sender: UIButton) {tappedNumber(num: 1)}
+    @IBAction func twoBtnTapped(_ sender: UIButton) {tappedNumber(num: 2)}
+    @IBAction func threeBtnTapped(_ sender: UIButton) {tappedNumber(num: 3)}
+    @IBAction func fourBtnTapped(_ sender: UIButton) {tappedNumber(num: 4)}
+    @IBAction func fiveBtnTapped(_ sender: UIButton) {tappedNumber(num: 5)}
+    @IBAction func sixBtnTapped(_ sender: UIButton) {tappedNumber(num: 6)}
+    @IBAction func sevenBtnTapped(_ sender: UIButton) {tappedNumber(num: 7)}
+    @IBAction func eightBtnTapped(_ sender: UIButton) {tappedNumber(num: 8)}
+    @IBAction func nineBtnTapped(_ sender: UIButton) {tappedNumber(num: 9)}
+    
+    @IBAction func plusBtnTapped(_ sender: UIButton) {
+        
+    }
+   
+    @IBAction func minusBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func equalBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func clearBtnTapped(_ sender: UIButton) {
         
     }
 }
