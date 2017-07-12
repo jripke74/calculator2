@@ -28,11 +28,12 @@ class ViewController: UIViewController {
     }
     
     func tappedNumber(num: Int) {
-        
+        labelString += "\(num)"
+        updateText()
     }
     
     func updateText() {
-        
+        displayLabel.text = labelString
     }
     
     func changedMode(newMode: modes) {
