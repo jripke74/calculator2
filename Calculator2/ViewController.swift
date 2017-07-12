@@ -44,7 +44,10 @@ class ViewController: UIViewController {
         if currentMode == modes.NOT_SET {
             savedNum = displayedNumber
         }
-        displayLabel.text = "\(displayedNumber)"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        let num = NSNumber(value: displayedNumber)
+        displayLabel.text = formatter.string(from: num)
     }
     
     func changedMode(newMode: modes) {
