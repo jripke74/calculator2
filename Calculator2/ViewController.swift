@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum modes {
+enum mode {
     case NOT_SET
     case ADDITION
     case SUBTRACTION
@@ -17,7 +17,7 @@ enum modes {
 class ViewController: UIViewController {
     
     var labelString = "0"
-    var currentMode = modes.NOT_SET
+    var currentMode = mode.NOT_SET
     var savedNum = 0
     var lastButtonWasMode = false
     
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             displayLabel.text = "Int conversion failed"
             return
         }
-        if currentMode == modes.NOT_SET {
+        if currentMode == mode.NOT_SET {
             savedNum = displayedNumber
         }
         let formatter = NumberFormatter()
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         displayLabel.text = formatter.string(from: num)
     }
     
-    func changedMode(newMode: modes) {
+    func changedMode(newMode: mode) {
         if savedNum == 0 {
             return
         }
@@ -71,26 +71,26 @@ class ViewController: UIViewController {
     @IBAction func nineBtnTapped(_ sender: UIButton) {tappedNumber(num: 9)}
     
     @IBAction func plusBtnTapped(_ sender: UIButton) {
-        changedMode(newMode: modes.ADDITION)
+        changedMode(newMode: mode.ADDITION)
     }
    
     @IBAction func minusBtnTapped(_ sender: UIButton) {
-        changedMode(newMode: modes.SUBTRACTION)
+        changedMode(newMode: mode.SUBTRACTION)
     }
     
     @IBAction func equalBtnTapped(_ sender: UIButton) {
         guard let num = Int(labelString) else {
             return
         }
-        if currentMode == modes.NOT_SET || lastButtonWasMode {
+        if currentMode == mode.NOT_SET || lastButtonWasMode {
             return
         }
-        if currentMode == modes.ADDITION {
+        if currentMode == mode.ADDITION {
             savedNum += num
-        } else if currentMode == modes.SUBTRACTION {
+        } else if currentMode == mode.SUBTRACTION {
             savedNum -= num
         }
-        currentMode = modes.NOT_SET
+        currentMode = mode.NOT_SET
         labelString = "\(savedNum)"
         updateText()
         lastButtonWasMode = true
