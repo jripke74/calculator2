@@ -28,6 +28,10 @@ class ViewController: UIViewController {
     }
     
     func tappedNumber(num: Int) {
+        if lastButtonWasMode {
+            lastButtonWasMode = false
+            labelString = "0"
+        }
         labelString += "\(num)"
         updateText()
     }
@@ -37,11 +41,18 @@ class ViewController: UIViewController {
             displayLabel.text = "Int conversion failed"
             return
         }
+        if currentMode == modes.NOT_SET {
+            savedNum = displayedNumber
+        }
         displayLabel.text = "\(displayedNumber)"
     }
     
     func changedMode(newMode: modes) {
-        
+        if savedNum == 0 {
+            return
+        }
+        currentMode = newMode
+        lastButtonWasMode = true
     }
     
     
@@ -57,15 +68,29 @@ class ViewController: UIViewController {
     @IBAction func nineBtnTapped(_ sender: UIButton) {tappedNumber(num: 9)}
     
     @IBAction func plusBtnTapped(_ sender: UIButton) {
-        
+        changedMode(newMode: modes.ADDITION)
     }
    
     @IBAction func minusBtnTapped(_ sender: UIButton) {
-        
+        changedMode(newMode: modes.SUBTRACTION)
     }
     
     @IBAction func equalBtnTapped(_ sender: UIButton) {
-        
+        guard let num = Int(labelString) else {
+            return
+        }
+        if currentMode == modes.NOT_SET || lastButtonWasMode {
+            return
+        }
+        if currentMode == modes.ADDITION {
+            savedNum += num
+        } else if currentMode == modes.SUBTRACTION {
+            savedNum -= num
+        }
+        currentMode = modes.NOT_SET
+        labelString = "\(savedNum)"
+        updateText()
+        lastButtonWasMode = true
     }
     
     @IBAction func clearBtnTapped(_ sender: UIButton) {
