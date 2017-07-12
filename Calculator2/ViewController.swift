@@ -69,6 +69,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clearBtnTapped(_ sender: UIButton) {
-        
+        savedNum = 0
+        labelString = "0"
+        displayLabel.text = "0"
+        lastButtonWasMode = false
     }
 }
