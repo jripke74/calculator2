@@ -9,15 +9,16 @@
 import UIKit
 
 enum mode {
-    case NOT_SET
-    case ADDITION
-    case SUBTRACTION
+    case notSet
+    case addition
+    case subtraction
+    case multiplication
 }
 
 class ViewController: UIViewController {
     
     var labelString = "0"
-    var currentMode = mode.NOT_SET
+    var currentMode: mode = .notSet
     var savedNum = 0
     var lastButtonWasMode = false
     
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
             displayLabel.text = "Int conversion failed"
             return
         }
-        if currentMode == mode.NOT_SET {
+        if currentMode == .notSet {
             savedNum = displayedNumber
         }
         let formatter = NumberFormatter()
@@ -71,26 +72,32 @@ class ViewController: UIViewController {
     @IBAction func nineBtnTapped(_ sender: UIButton) {tappedNumber(num: 9)}
     
     @IBAction func plusBtnTapped(_ sender: UIButton) {
-        changedMode(newMode: mode.ADDITION)
+        changedMode(newMode: .addition)
     }
    
     @IBAction func minusBtnTapped(_ sender: UIButton) {
-        changedMode(newMode: mode.SUBTRACTION)
+        changedMode(newMode: .subtraction)
+    }
+    
+    @IBAction func multiplyBtnTapped(_ sender: UIButton) {
+        changedMode(newMode: .multiplication)
     }
     
     @IBAction func equalBtnTapped(_ sender: UIButton) {
         guard let num = Int(labelString) else {
             return
         }
-        if currentMode == mode.NOT_SET || lastButtonWasMode {
+        if currentMode == .notSet || lastButtonWasMode {
             return
         }
-        if currentMode == mode.ADDITION {
+        if currentMode == .addition {
             savedNum += num
-        } else if currentMode == mode.SUBTRACTION {
+        } else if currentMode == .subtraction {
             savedNum -= num
+        } else if currentMode == .multiplication {
+            savedNum *= num
         }
-        currentMode = mode.NOT_SET
+        currentMode = .notSet
         labelString = "\(savedNum)"
         updateText()
         lastButtonWasMode = true
