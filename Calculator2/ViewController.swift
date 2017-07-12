@@ -8,18 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+enum modes {
+    case NOT_SET
+    case ADDITION
+    case SUBTRACTION
 }
 
+class ViewController: UIViewController {
+    
+    var labelString = "0"
+    var currentMode = modes.NOT_SET
+    var savedNum = 0
+    var lastButtonWasMode = false
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func tappedNumber(num: Int) {
+        
+    }
+    
+    func updateText() {
+        
+    }
+    
+    func changedMode(newMode: modes) {
+        
+    }
+}
